@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #conteudo {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .imagem {
+            display: flex;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>Campo minado SPTECH</h1>
+    Tipo de campo: 
+    <select id="tipo_campo">
+        <option value="2">2x2</option>
+        <option value="3">3x3</option>
+        <option value="4">4x4</option>
+        <option value="5">5x5</option>
+        <option value="6">6x6</option>
+    </select>
+    <button onclick="jogar()">Novo jogo</button><br>
+    minas: <span id="minas" ></span><br>
+    explosões: <span id="explosao" ></span>
+    pontos: <span id="pontos"></span>
+
+
+<div id="conteudo"></div>
+
+
+</body>
+</html>
+
+<script>
+
+    var contador = 0;
+
+    function jogar() {
+        var tipoCampo = Number(tipo_campo.value);
+        var contadorY = 1;
+        var maximo = tipoCampo*tipoCampo;
+
+
+ /*for(var y=1; y<=tipoCampo; y++){
+    for(var x=1; x<=tipoCampo; x++){
+        if(x < tipoCampo){
+            conteudo.innerHTML+=`<img src="pergunta.png" onclick="sortear()" alt="">`
+        }else if(x == tipoCampo){
+            conteudo.innerHTML+=`<img src="pergunta.png" onclick="sortear()" alt=""><br>`
+        }
+        x++
+    }
+y++
+}*/
+        
+
+        while ((contador - 1) <= tipoCampo) {
+            conteudo.innerHTML += `<img src="pergunta.png" onclick="sortear()" id="${contador}" alt="">`;
+            contador++;
+        }
+
+    /* for (var i = 1; i <= maximo; i++) {
+        if(contadorY <= tipoCampo){
+
+            for (var z = 1; i < tipoCampo; z++) {
+                if(z < tipoCampo){           
+            conteudo.innerHTML = `<div onclick="sortear()" id="${contador}"><img src="pergunta.png" alt=""></div>`;
+            contador++;
+        } else if(z == tipoCampo){
+            conteudo.innerHTML += `<div onclick="sortear()" id="${contador}"><img src="pergunta.png" alt=""></div><br>`;
+            contador++;
+            contadorY++;
+        }  
+               
+            }
+            
+
+        }
+        
+    } */
+    }
+
+    function sortear() {
+        var numero = parseInt(Math.random() * 3)
+
+        if (numero % 2 == 0 ) {
+            conteudo.innerHTML += `<div onclick="sortear()" id="${contador}"><img src="bomb.png" alt=""></div>`;
+        } else if (numero % 2 == 1) {
+            conteudo.innerHTML += `<div onclick="sortear()" id="${contador}"><img src="pergunta.png" alt=""></div><br>`;
+        }
+    }
+
+
+</script>
+
